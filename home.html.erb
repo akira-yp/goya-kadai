@@ -17,12 +17,10 @@
 
     <form action="goya.cgi" method="POST">
        ボタンを押すと自家消費以外のゴーヤ情報ページに飛びます<br><br>
-       <!-- valueには、送りたいデータを代入する -->
-       <!-- name="goya"を、情報の目印とする -->
       <input type="text" name="goya" value="<%= data.join("<br>") %>">
       <input type="submit" name="送信" >
     </form>
-    <% bad_goya = connection.exec("select weight,give_for from crops where quality = true ;") %>
+    <% bad_goya = connection.exec("select weight,give_for from crops where quality = false ;") %>
     <% data_false = [] %>
     <% bad_goya.each do |badone| %>
     <% data_false << "【品質が悪いゴーヤ】大きさ : #{badone["weight"]}g  売った相手 :  #{badone["give_for"]}" %>
